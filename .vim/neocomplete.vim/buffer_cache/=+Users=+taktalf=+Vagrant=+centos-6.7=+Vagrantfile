@@ -1,0 +1,1 @@
+{'mode', 'ruby', 'set', 'Vagrant', 'configure', 'config', 'define', 'centos', 'server', 'box', 'bento', 'network', 'private_network', 'synced_folder', 'workspace', 'vagrant_data', 'ssh', 'insert_key', 'false', 'end', 'plando', 'hostname', 'laravel', 'homestead'}

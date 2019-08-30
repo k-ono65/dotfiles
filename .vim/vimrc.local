@@ -1,0 +1,4 @@
+augroup MyTagsAutoCmd
+    autocmd!
+    autocmd BufNewFile,BufRead ~/Vagrant/workspace/portal/*.php setlocal tags=$HOME/.vim/tags/portal.tags,$HOME/.vim/tags/global.tags
+augroup END

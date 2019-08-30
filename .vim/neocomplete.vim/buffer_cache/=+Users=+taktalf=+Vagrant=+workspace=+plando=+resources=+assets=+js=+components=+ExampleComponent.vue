@@ -1,0 +1,1 @@
+{'template', 'div', 'class', 'container', 'row', 'justify', 'content', 'center', 'col', 'card', 'default', 'header', 'Example', 'Component', 'body', 'example', 'component', 'script', 'export', 'mounted', 'console', 'log'}

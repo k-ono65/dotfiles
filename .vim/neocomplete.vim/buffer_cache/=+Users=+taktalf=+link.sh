@@ -1,0 +1,1 @@
+{'bin', 'bash', 'set', '-eux', 'BKDIR', '.bk_dot', 'DOTDIR', 'dotfiles', 'DOTFILES', '.dein.toml', '.dein_lazy.toml', '.vimrc', '.vim', 'uname', 'Darwin', 'then', 'Mac', 'elif', 'expr', 'substr', 'Linux', 'MINGW32_NT', 'Cygwin', 'else', 'echo', 'platform', 'not', 'supported', 'exit', 'mkdir', 'for', 'done'}
