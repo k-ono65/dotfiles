@@ -28,3 +28,4 @@ repo = 'tomasr/molokai'
 hook_add = '''
   au VimEnter * nested colorscheme molokai
 '''
+

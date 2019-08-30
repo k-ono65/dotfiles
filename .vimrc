@@ -170,8 +170,8 @@ imap <silent><expr><TAB>  neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_
 imap <silent><expr><C-x>  MyNeoCompleteCr()
 imap <silent><expr><CR>   MyNeoCompleteCr()
 nmap <silent><S-TAB> <ESC>a<C-r>=neosnippet#commands#_clear_markers()<CR>
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
+:"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 
 let g:neosnippet#data_directory                = $HOME . '/.vim/neosnippet.vim'
 let g:neosnippet#disable_runtime_snippets      = {'_' : 1}

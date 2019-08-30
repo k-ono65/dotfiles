@@ -30,3 +30,11 @@ on_i = 1
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = 'neomru.vim'
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+hook_add = '''
+  let g:terraform_align = 1
+  let g:terraform_fmt_on_save = 1
+'''
+on_i = 1
