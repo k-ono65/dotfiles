@@ -26,6 +26,7 @@ set sidescrolloff=16	" 左右スクロール時の視界を確保
 "--------------------------
 " indent settings
 "--------------------------
+set expandtab
 set tabstop=4			"タブの空白文字数
 set softtabstop=4		"タブ入力時の空白文字数
 set shiftwidth=4		"自動インデントでずれる幅
@@ -233,6 +234,11 @@ let g:neocomplete#use_vimproc = 1
 "--------------------------
 colorscheme molokai
 syntax on
+
+"--------------------------
+" ft setting
+"-------------------------
+autocmd BufRead,BufNewFile *.json setfiletype json
 
 "--------------------------
 " tags
