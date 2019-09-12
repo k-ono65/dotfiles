@@ -108,8 +108,7 @@ nmap     <leader>t [TABCMD]
 
 nnoremap <silent> [TABCMD]H :<c-u>tabfirst<cr>
 nnoremap <silent> [TABCMD]L :<c-u>tablast<cr>
-nnoremap <silent> [TABCMD]n :<c-u>tabnext<cr>
-nnoremap <silent> [TABCMD]l :<c-u>tabNext<cr>
+nnoremap <silent> [TABCMD]l :<c-u>tabnext<cr>
 nnoremap <silent> [TABCMD]h :<c-u>tabprevious<cr>
 nnoremap <silent> [TABCMD]n :<c-u>tabedit<cr>
 nnoremap <silent> [TABCMD]q :<c-u>tabclose<cr>

@@ -26,6 +26,22 @@ repo = 'Shougo/neosnippet-snippets'
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
+  let g:molokai_original = 1
+  let g:rehash264 = 1
   au VimEnter * nested colorscheme molokai
 '''
 
+[[plugins]]
+repo = "airblade/vim-gitgutter"
+
+[[plugins]]
+repo = "tpope/vim-fugitive"
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+
+[[plugin]]
+repo = 'jason0x43/vim-js-indent'
+hook_add = '''
+  let g:js_indent_typesript = 1
+'''
