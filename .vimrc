@@ -22,6 +22,7 @@ set showtabline=2		"タブラベルを常に表示する"
 "--------------------------
 set scrolloff=4			" 上下4行の視界を確保
 set sidescrolloff=16	" 左右スクロール時の視界を確保
+set backspace=indent,eol,start
 
 "--------------------------
 " indent settings
@@ -34,6 +35,8 @@ set autoindent			"改行時に前の行のインデントを継続する
 set smartindent			"改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smarttab			"行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 
+filetype plugin on      "filetypeによって設定を変える
+filetype indent on      "filetypeによって設定を変える
 "--------------------------
 " search settings
 "--------------------------
