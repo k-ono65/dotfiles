@@ -22,6 +22,7 @@ set showtabline=2		"タブラベルを常に表示する"
 "--------------------------
 set scrolloff=4			" 上下4行の視界を確保
 set sidescrolloff=16	" 左右スクロール時の視界を確保
+set backspace=indent,eol,start
 
 "--------------------------
 " indent settings
