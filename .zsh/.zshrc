@@ -13,12 +13,6 @@ export FZF_ALT_C_OPTS="--select-1 --exit-0"
 # anyframe
 autoload -Uz anyframe-init && anyframe-init
 
-bindkey '^]' anyframe-widget-cdr
-bindkey '^r' anyframe-widget-put-history
-bindkey '^g' anyframe-widget-cd-ghq-repository
-bindkey '^x^k' anyframe-widget-kill
-bindkey '^x^b' anyframe-widget-checkout-git-branch
-
 if (which zprof >/dev/null); then
 	zprof | less -qR
 fi
