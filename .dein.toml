@@ -55,3 +55,6 @@ hook_add = '''
   let g:terraform_align = 1
   let g:terraform_fold_section = 1
 '''
+
+[[plugins]]
+repo = 'fatih/vim-go'

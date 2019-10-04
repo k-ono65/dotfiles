@@ -1,3 +1,3 @@
 augroup filetypedetect
-    au BufRead, BufNewFile *.tf *.yml setfiletype terraform
+    au BufRead, BufNewFile *.tf *.yml *.yaml setfiletype yaml
 augroup END
