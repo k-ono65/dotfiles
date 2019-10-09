@@ -10,8 +10,11 @@ export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 export PATH=/usr/local/bin:$PATH
 
 # golang
-#export GOPATH=$HOME
-#export PATH=$GOPATH/bin:$PATH
+export GOPATH=$HOME
+export PATH=$GOPATH/bin:$PATH
+
+#python
+export PYENV_ROOT=/usr/local/var/pyenv
 
 if [ -n "$DEBUG" ]; then
 	zmodload zsh/zprof && zprof
