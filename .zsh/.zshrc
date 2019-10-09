@@ -30,3 +30,4 @@ autoload -Uz add-zsh-hook
 autoload -Uz chpwd_recent_dirs
 add-zsh-hook chpwd chpwd_recent_dirs
 
+command -v pyenv > /dev/null && eval "$(pyenv init -)"
