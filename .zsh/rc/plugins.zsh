@@ -15,6 +15,7 @@ zplug "mafredri/zsh-async", from:github
 zplug "mollifier/anyframe", lazy:true
 zplug "motemen/ghq", from:gh-r, as:command, rename-to:ghq, lazy:true
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zplug "b4b4r07/enhancd", use:"init.sh"
 
 zplug 'modules/utility', from:prezto
 zplug "modules/completion", from:prezto
