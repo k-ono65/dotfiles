@@ -31,3 +31,15 @@ autoload -Uz chpwd_recent_dirs
 add-zsh-hook chpwd chpwd_recent_dirs
 
 command -v pyenv > /dev/null && eval "$(pyenv init -)"
+
+function buffer-fzf-history() {
+    local HISTORY=$(history -n -r 1 | fzf +m)
+    BUFFER=$HISTORY
+    if [ -n "$HISTORY" ]; then
+        CURSOR=$#BUFFER
+    else
+        zle accept-line
+    fi
+}
+zle -N buffer-fzf-history
+bindkey '^R' buffer-fzf-history
