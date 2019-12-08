@@ -18,9 +18,15 @@ export GOROOT=$(go env GOROOT)
 export PATH=$GOPATH/bin:$PATH
 
 #python
-export PYENV_ROOT=/usr/local/var/pyenv
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$HOME/.pyenv/bin:$PATH
+command -v pyenv > /dev/null && eval "$(pyenv init -)"
 
 if [ -n "$DEBUG" ]; then
 	zmodload zsh/zprof && zprof
 	unset DEBUG
 fi
+
+#ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH
+

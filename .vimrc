@@ -61,6 +61,15 @@ set noundofile          "undoファイルを作らない
 "--------------------------
 set history=10000		"コマンドラインの履歴を10000件保存する
 
+"--------------------------
+" key map
+"--------------------------
+nnoremap <S-h> 0
+nnoremap <S-l> $
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :<C-u>cfirst<CR>
+nnoremap ]Q :<C-u>clast<CR>
 
 "--------------------------
 " leader setting
@@ -227,7 +236,12 @@ let g:neocomplete#sources#dictionary#dictionaries  = {
 \    'javascript': $HOME . '/.vim/dict/javascript.dict',
 \    'php':        $HOME . '/.vim/dict/php.dict'
 \}
+
+let g:neocomplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
 let g:neocomplete#use_vimproc = 1
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 "}}}
 
@@ -241,6 +255,7 @@ syntax on
 " ft setting
 "-------------------------
 autocmd BufRead,BufNewFile *.json setfiletype json
+runtime! ftplugin/man.vim
 
 "--------------------------
 " tags

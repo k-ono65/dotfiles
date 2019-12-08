@@ -5,8 +5,7 @@ autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 
-# fzf
-zstyle ":anyframe:selector:" use fzf
+# fzf zstyle ":anyframe:selector:" use fzf
 export FZF_DEFAULT_OPTS="--height 80% --border --ansi --multi"
 export FZF_ALT_C_OPTS="--select-1 --exit-0"
 
@@ -30,8 +29,6 @@ autoload -Uz add-zsh-hook
 autoload -Uz chpwd_recent_dirs
 add-zsh-hook chpwd chpwd_recent_dirs
 
-command -v pyenv > /dev/null && eval "$(pyenv init -)"
-
 function buffer-fzf-history() {
     local HISTORY=$(history -n -r 1 | fzf +m)
     BUFFER=$HISTORY
@@ -43,3 +40,7 @@ function buffer-fzf-history() {
 }
 zle -N buffer-fzf-history
 bindkey '^R' buffer-fzf-history
+
+#direnv
+eval "$(direnv hook zsh)"
+

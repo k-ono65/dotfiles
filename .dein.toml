@@ -45,12 +45,6 @@ repo = "tpope/vim-fugitive"
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
 
-[[plugin]]
-repo = 'jason0x43/vim-js-indent'
-hook_add = '''
-  let g:js_indent_typesript = 1
-'''
-
 [[plugins]]
 repo = 'hashivim/vim-terraform'
 hook_add = '''
@@ -61,3 +55,21 @@ hook_add = '''
 
 [[plugins]]
 repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merge = 0
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'skanehira/translate.vim'
