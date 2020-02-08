@@ -21,7 +21,7 @@ fi
 chpwd() { 
     count=$(ls -lA | wc -l | bc)
     if [ ${count} -le 20 ]; then
-        ls -lA
+        ls -lAG
     fi
 }
 

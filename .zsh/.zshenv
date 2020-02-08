@@ -1,6 +1,9 @@
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
+# direnv
+export EDITOR="vim"
+
 # ls colors
 export CLICOLOR=1;
 export LSCOLORS=gxfxcxdxbxegedabagacad;

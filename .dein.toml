@@ -37,6 +37,25 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'sainnhe/edge'
+hook_add = '''
+  set termguicolors
+  set background=dark
+  let g:edge_style = 'neon'
+  let g:edge_disable_italic_comment = 1
+  au VimEnter * nested colorscheme edge
+'''
+
+[[plugins]]
+repo = 'gruvbox-material/vim'
+hook_add = '''
+  set termguicolors
+  set background=dark
+  let g:gruvbox_material_background = 'soft'
+  au VimEnter * nested colorscheme gruvbox-material
+'''
+
+[[plugins]]
 repo = "airblade/vim-gitgutter"
 
 [[plugins]]
@@ -73,3 +92,12 @@ repo = 'tpope/vim-endwise'
 
 [[plugins]]
 repo = 'skanehira/translate.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
