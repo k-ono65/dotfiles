@@ -1,1 +1,0 @@
-{'php', 'The', 'development', 'database', 'settings', 'These', 'get', 'merged', 'with', 'the', 'global', 'return', 'array', 'default', 'connection', 'dsn', 'mysql', 'host', 'localhost', 'dbname', 'albumeee', 'username', 'albuser', 'password', 'Passw0rd'}

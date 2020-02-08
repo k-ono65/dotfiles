@@ -76,6 +76,16 @@ nnoremap ]Q :<C-u>clast<CR>
 "--------------------------
 let mapleader = "\<Space>"  "スペースをleaderとして登録する
 
+"--------------------------
+" lsp key mapping
+"--------------------------
+nmap <silent> <Leader>d :LspDefinition<CR>
+nmap <silent> <Leader>p :LspHover<CR>
+nmap <silent> <Leader>r : LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+nmap <silent> <Leader>s :split \| :LspDefinition<CR>
+nmap <silent> <Leader>v :vsplit \| :LspDefinition<CR>
+
 " }}}
 
 " unite.vim {{{
@@ -185,10 +195,10 @@ nmap <silent><S-TAB> <ESC>a<C-r>=neosnippet#commands#_clear_markers()<CR>
 :"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 "inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 
-let g:neosnippet#data_directory                = $HOME . '/.vim/neosnippet.vim'
+let g:neosnippet#data_directory                = $HOME . '/.vim/plugged/neosnippet.vim'
 let g:neosnippet#disable_runtime_snippets      = {'_' : 1}
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory            = $HOME . '/.vim/snippets'
+let g:neosnippet#snippets_directory            = $HOME . '/.vim/plugged/snippets'
 function! MyNeoCompleteCr() abort "{{{
     if pumvisible() is# 0
         return "\<CR>X\<C-h>"
@@ -202,7 +212,7 @@ endfunction "}}}
 " neocomplete
 "--------------------------
 let g:neocomplete#auto_completion_start_length = 3
-let g:neocomplete#data_directory               = $HOME .'/.vim/neocomplete.vim'
+let g:neocomplete#data_directory               = $HOME .'/.vim/plugged/neocomplete.vim'
 let g:neocomplete#delimiter_patterns           = {
 \    'javascript': ['.'],
 \    'php':        ['->', '::', '\'],

@@ -1,2 +1,2 @@
-.vim/neocomplete.vim/*
-.vim/neosnippet.vim/*
+.vim/plugged/neocomplete.vim/*
+.vim/plugged/neosnippet.vim/*

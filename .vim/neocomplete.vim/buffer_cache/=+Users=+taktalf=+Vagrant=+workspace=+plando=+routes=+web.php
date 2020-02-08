@@ -1,1 +1,0 @@
-{'php', 'Web', 'Routes', 'Here', 'where', 'you', 'can', 'register', 'web', 'routes', 'for', 'your', 'application', 'These', 'are', 'loaded', 'the', 'RouteServiceProvider', 'within', 'group', 'which', 'contains', 'middleware', 'Now', 'create', 'something', 'great', 'Route', 'get', 'function', 'return', 'view', 'app'}
