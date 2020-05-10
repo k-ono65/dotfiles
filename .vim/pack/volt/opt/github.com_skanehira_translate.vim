@@ -1,0 +1,1 @@
+/Users/taktalf/volt/repos/github.com/skanehira/translate.vim
