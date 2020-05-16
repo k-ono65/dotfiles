@@ -45,10 +45,42 @@ function! s:on_load_post_1()
   call denite#custom#var('grep', 'pattern_opt', [])
   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
   call denite#custom#kind('file', 'default_action', 'split')
-  let s:denite_default_options = {
-        \ 'start_filter': v:true,
-        \ }
+  if has('nvim')
+    let s:denite_win_width_percent = 0.85
+    let s:denite_win_height_percent = 0.7
+    let s:denite_default_options = {
+          \ 'split': 'floating',
+          \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+          \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+          \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+          \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+          \ 'highlight_filter_background': 'DeniteFilter',
+          \ 'prompt': '$ ',
+          \ 'start_filter': v:true,
+          \ }
+    let s:denite_option_array = []
+    for [key, value] in items(s:denite_default_options)
+      call add(s:denite_option_array, '-'.key.'='.value)
+    endfor
+  else
+    let s:denite_default_options = {
+          \ 'start_filter': v:true,
+          \ }
+  endif
   call denite#custom#option('default', s:denite_default_options)
+
+  function! g:GetVisualWord() abort
+    let word = getline("'<")[getpos("'<")[2] - 1:getpos("'>")[2] - 1]
+    return word
+  endfunction
+
+  function! g:GetVisualWordEscape() abort
+    let word = substitute(GetVisualWord(), '\\', '\\\\', 'g')
+    let word = substitute(word, '[.?*+^$|()[\]]', '\\\0', 'g')
+    return word
+  endfunction
+
+  xnoremap <silent> ,g :Denite grep:::`GetVisualWordEscape()`<CR>
 endfunction
 
 function! s:denite_my_settings() abort
@@ -72,6 +104,17 @@ function! s:denite_filter_my_settings() abort
     imap <silent><buffer><expr> <C-o> <Plug>(denite_filter_quit)
     inoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
     nnoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
+  endfunction
+
+function! g:GetVisualWord() abort
+    let word = getline("'<")[getpos("'<")[2] - 1:getpos("'>")[2] - 1]
+    return word
+  endfunction
+
+function! g:GetVisualWordEscape() abort
+    let word = substitute(GetVisualWord(), '\\', '\\\\', 'g')
+    let word = substitute(word, '[.?*+^$|()[\]]', '\\\0', 'g')
+    return word
   endfunction
 
 " github.com/prabirshrestha/vim-lsp
@@ -106,17 +149,23 @@ function! s:on_lsp_buffer_enabled() abort
   endfunction
 
 " github.com/sainnhe/gruvbox-material
-function! s:on_load_post_20()
+function! s:on_load_post_17()
   set termguicolors
   set background=dark
   let g:gruvbox_material_background = 'soft'
   autocmd VimEnter * colorscheme gruvbox-material
 endfunction
 
+" github.com/tyru/open-browser.vim
+function! s:on_load_post_21()
+  nmap <Leader>b <Plug>(openbrowser-smart-search)
+  vmap <Leader>b <Plug>(openbrowser-smart-search)
+endfunction
+
 augroup volt-bundled-plugconf
   autocmd!
   call s:on_load_pre_1() | packadd github.com_Shougo_denite.nvim | call s:on_load_post_1()
-  packadd github.com_Shougo_vimproc.vim
+  packadd github.com_Shougo_vimproc
   packadd github.com_airblade_vim-gitgutter
   packadd github.com_hashivim_vim-terraform
   packadd github.com_hrsh7th_vim-vsnip
@@ -131,11 +180,9 @@ augroup volt-bundled-plugconf
   packadd github.com_prabirshrestha_asyncomplete.vim
   call s:on_load_pre_15() | packadd github.com_prabirshrestha_vim-lsp
   packadd github.com_rking_ag.vim
-  packadd github.com_roxma_nvim-yarp
-  packadd github.com_roxma_vim-hug-neovim-rpc
-  packadd github.com_sainnhe_edge
-  packadd github.com_sainnhe_gruvbox-material | call s:on_load_post_20()
+  packadd github.com_sainnhe_gruvbox-material | call s:on_load_post_17()
   packadd github.com_scrooloose_nerdtree
   packadd github.com_simeji_winresizer
   packadd github.com_skanehira_translate.vim
+  packadd github.com_tyru_open-browser.vim | call s:on_load_post_21()
 augroup END
