@@ -5,7 +5,6 @@
 "--------------------------
 set number				"行番号を表示する
 set shellslash			"Windowsでもファイル名を/区切りにする
-set shiftwidth=4		"自動インデントに使われる空白の数
 set shortmess+=a		"ファイル関連のメッセージのフォーマット
 set shortmess+=I		"同上"
 set showbreak=>			"折り返された行の先頭に表示する文字列
@@ -28,9 +27,9 @@ set backspace=indent,eol,start
 " indent settings
 "--------------------------
 set expandtab
-set tabstop=4			"タブの空白文字数
-set softtabstop=4		"タブ入力時の空白文字数
-set shiftwidth=4		"自動インデントでずれる幅
+set tabstop=2			"タブの空白文字数
+set softtabstop=2		"タブ入力時の空白文字数
+set shiftwidth=2		"自動インデントでずれる幅
 set autoindent			"改行時に前の行のインデントを継続する
 set smartindent			"改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smarttab			"行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
@@ -62,203 +61,8 @@ set noundofile          "undoファイルを作らない
 set history=10000		"コマンドラインの履歴を10000件保存する
 
 "--------------------------
-" key map
-"--------------------------
-nnoremap <S-h> 0
-nnoremap <S-l> $
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :<C-u>cfirst<CR>
-nnoremap ]Q :<C-u>clast<CR>
-
-"--------------------------
-" leader setting
-"--------------------------
-let mapleader = "\<Space>"  "スペースをleaderとして登録する
-
-"--------------------------
-" lsp key mapping
-"--------------------------
-nmap <silent> <Leader>d :LspDefinition<CR>
-nmap <silent> <Leader>p :LspHover<CR>
-nmap <silent> <Leader>r : LspReferences<CR>
-nmap <silent> <Leader>i :LspImplementation<CR>
-nmap <silent> <Leader>s :split \| :LspDefinition<CR>
-nmap <silent> <Leader>v :vsplit \| :LspDefinition<CR>
-
-" }}}
-
-" unite.vim {{{
-"--------------------------
-" The prefix key.
-"--------------------------
-nnoremap    [unite]   <Nop>
-nmap    <Leader>f [unite]
-
-"--------------------------
-" unite.vim keymap
-"--------------------------
-nnoremap [unite]u  :<C-u>Unite -no-split<Space>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
-nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
-nnoremap <silent> ,vr :UniteResume<CR>
-
-"--------------------------
-" vinarise
-"--------------------------
-let g:vinarise_enable_auto_detect = 1
-
-"--------------------------
-" unite-build map
-"--------------------------
-nnoremap <silent> ,vb :Unite build<CR>
-nnoremap <silent> ,vcb :Unite build:!<CR>
-nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
-
-"" }}}
-
-"--------------------------
-" nerdtree map
-"--------------------------
-nnoremap <silent><Leader>e :NERDTreeToggle<CR>
-
-" tab setting {{{
-nnoremap [TABCMD]  <nop>
-nmap     <leader>t [TABCMD]
-
-nnoremap <silent> [TABCMD]H :<c-u>tabfirst<cr>
-nnoremap <silent> [TABCMD]L :<c-u>tablast<cr>
-nnoremap <silent> [TABCMD]l :<c-u>tabnext<cr>
-nnoremap <silent> [TABCMD]h :<c-u>tabprevious<cr>
-nnoremap <silent> [TABCMD]n :<c-u>tabedit<cr>
-nnoremap <silent> [TABCMD]q :<c-u>tabclose<cr>
-nnoremap <silent> [TABCMD]o :<c-u>tabonly<cr>
-nnoremap <silent> [TABCMD]s :<c-u>tabs<cr>
-" }}}
-
-" dein settings {{{
-"--------------------------
-" vi compatible
-"--------------------------
-if &compatible
-  set nocompatible
-endif
-
-"--------------------------
-" dein.vim directory
-"--------------------------
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-"--------------------------
-" dein install
-"--------------------------
-if !isdirectory(s:dein_repo_dir)
-  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-endif
-execute 'set runtimepath^=' . s:dein_repo_dir
-
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  "--------------------------
-  " manage plugin files
-  "--------------------------
-  let s:toml = expand('~/.dein.toml')
-  let s:lazy_toml = expand('~/.dein_lazy.toml')
-  call dein#load_toml(s:toml, {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif
-
-"}}}
-
-" neocomplete & neosnippet setting {{{
-
-"--------------------------
-" neosnippet
-"--------------------------
-smap <silent><expr><TAB>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-nmap <silent><expr><TAB>  neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <silent><expr><TAB>  neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <silent><expr><C-x>  MyNeoCompleteCr()
-imap <silent><expr><CR>   MyNeoCompleteCr()
-nmap <silent><S-TAB> <ESC>a<C-r>=neosnippet#commands#_clear_markers()<CR>
-:"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-
-let g:neosnippet#data_directory                = $HOME . '/.vim/plugged/neosnippet.vim'
-let g:neosnippet#disable_runtime_snippets      = {'_' : 1}
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory            = $HOME . '/.vim/plugged/snippets'
-function! MyNeoCompleteCr() abort "{{{
-    if pumvisible() is# 0
-        return "\<CR>X\<C-h>"
-    elseif neosnippet#expandable_or_jumpable()
-        return "\<Plug>(neosnippet_expand_or_jump)"
-    endif
-    return "\<Left>\<Right>"
-endfunction "}}}
-
-"--------------------------
-" neocomplete
-"--------------------------
-let g:neocomplete#auto_completion_start_length = 3
-let g:neocomplete#data_directory               = $HOME .'/.vim/plugged/neocomplete.vim'
-let g:neocomplete#delimiter_patterns           = {
-\    'javascript': ['.'],
-\    'php':        ['->', '::', '\'],
-\    'ruby':       ['::']
-\}
-let g:neocomplete#enable_at_startup         = 1
-let g:neocomplete#enable_auto_close_preview = 1
-let g:neocomplete#enable_auto_delimiter     = 1
-let g:neocomplete#enable_auto_select        = 0
-let g:neocomplete#enable_fuzzy_completion   = 0
-let g:neocomplete#enable_smart_case         = 1
-let g:neocomplete#keyword_patterns          = {'_': '\h\w*'}
-let g:neocomplete#lock_buffer_name_pattern  = '\.log\|.*quickrun.*\|.jax'
-let g:neocomplete#max_keyword_width         = 30
-let g:neocomplete#max_list                  = 8
-let g:neocomplete#min_keyword_length        = 3
-let g:neocomplete#sources                   = {
-\    '_':          ['neosnippet', 'file',               'buffer'],
-\    'css':        ['neosnippet',         'dictionary', 'buffer'],
-\    'html':       ['neosnippet', 'file', 'dictionary', 'buffer'],
-\    'javascript': ['neosnippet', 'file', 'dictionary', 'buffer'],
-\    'php':        ['neosnippet', 'file', 'dictionary', 'buffer']
-\}
-let g:neocomplete#sources#buffer#cache_limit_size  = 50000
-let g:neocomplete#sources#buffer#disabled_pattern  = '\.log\|\.jax'
-let g:neocomplete#sources#buffer#max_keyword_width = 30
-let g:neocomplete#sources#dictionary#dictionaries  = {
-\    '_':          '',
-\    'css':        $HOME . '/.vim/dict/css.dict',
-\    'html':       $HOME . '/.vim/dict/html.dict',
-\    'javascript': $HOME . '/.vim/dict/javascript.dict',
-\    'php':        $HOME . '/.vim/dict/php.dict'
-\}
-
-let g:neocomplete#sources#omni#input_patterns = {
-\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-\}
-let g:neocomplete#use_vimproc = 1
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-
-"}}}
-
-"--------------------------
 " colorscheme
 "--------------------------
-colorscheme molokai
 syntax on
 
 "--------------------------
@@ -267,9 +71,4 @@ syntax on
 autocmd BufRead,BufNewFile *.json setfiletype json
 runtime! ftplugin/man.vim
 
-"--------------------------
-" tags
-"--------------------------
-"nnoremap <C-]> g<C-]>
-"au BufNewFile,BufRead *.php set tags+=$HOME/.vim/tags/global.tags
-"source ~/.vim/vimrc.local
+call map(sort(split(globpath(&runtimepath,'_config/*.vim'))),{->[execute('exec "so" v:val')]})

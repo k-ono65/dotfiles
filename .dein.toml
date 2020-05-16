@@ -33,7 +33,6 @@ repo = 'tomasr/molokai'
 hook_add = '''
   let g:molokai_original = 1
   let g:rehash264 = 1
-  au VimEnter * nested colorscheme molokai
 '''
 
 [[plugins]]
@@ -42,8 +41,7 @@ hook_add = '''
   set termguicolors
   set background=dark
   let g:edge_style = 'neon'
-  let g:edge_disable_italic_comment = 1
-  au VimEnter * nested colorscheme edge
+  let g:edge_disable_italic_comment = 0
 '''
 
 [[plugins]]
@@ -73,9 +71,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'fatih/vim-go'
-
-[[plugins]]
 repo = 'junegunn/fzf'
 build = './install --all'
 merge = 0
@@ -94,10 +89,34 @@ repo = 'tpope/vim-endwise'
 repo = 'skanehira/translate.vim'
 
 [[plugins]]
+repo = 'mattn/vim-lsp-settings'
+hook_add = '''
+ let g:lsp_settings_servers_dir = '~/.lsp-settings'
+'''
+
+[[plugins]]
 repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
