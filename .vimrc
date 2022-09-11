@@ -65,6 +65,17 @@ set history=10000		"コマンドラインの履歴を10000件保存する
 "--------------------------
 syntax on
 
+set termguicolors
+if has('nvim')
+  set pumblend=10
+endif
+
+"--------------------------
+" terminal setting
+"--------------------------
+command! -nargs=* T split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+
 "--------------------------
 " ft setting
 "-------------------------
