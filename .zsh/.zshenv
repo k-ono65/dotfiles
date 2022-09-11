@@ -31,24 +31,45 @@ fi
 
 #node
 if (( $+commands[nodebrew] )); then
-  path=($OHME/.nodebrew/current/bin $path)
+  path=($HOME/.nodebrew/current/bin $path)
 fi
 
 #python
 if (( $+commands[pyenv] )); then
-  path=($(pyenv root)/shims $path)
-  eval "$(SHELL=zsh pyenv init - --no-rehash)"
+#  path=($(pyenv root)/shims $path)
+#  eval "$(SHELL=zsh pyenv init - --no-rehash)"
 fi
 
 #ruby
 if (( $+commands[rbenv] )); then
-  path=($(rbenv root)/shims $path)
-  eval "$(SHELL=zsh rbenv init - --norehash)"
+  #path=($(rbenv root)/shims $path)
+  #eval "$(SHELL=zsh rbenv init - --norehash)"
 fi
 #export PATH=/usr/local/opt/ruby/bin:$PATH
+
+#rust
+path=($HOME/.cargo/bin $path)
 
 if [ -n "$DEBUG" ]; then
 	zmodload zsh/zprof && zprof
 	unset DEBUG
 fi
 
+# mysql
+path=(
+  /usr/local/opt/mysql-client/bin(N-/)
+  $path
+)
+
+# postgresql
+path=(
+  /usr/local/opt/libpq/bin(N-/)
+  $path
+)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kouhei_ono/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kouhei_ono/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kouhei_ono/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kouhei_ono/google-cloud-sdk/completion.zsh.inc'; fi
+. "$HOME/.cargo/env"
