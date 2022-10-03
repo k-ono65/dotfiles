@@ -22,6 +22,8 @@ set showtabline=2		"タブラベルを常に表示する"
 set scrolloff=4			" 上下4行の視界を確保
 set sidescrolloff=16	" 左右スクロール時の視界を確保
 set backspace=indent,eol,start
+set cursorline
+set cursorcolumn
 
 "--------------------------
 " indent settings
@@ -76,10 +78,54 @@ endif
 command! -nargs=* T split | terminal <args>
 command! -nargs=* VT vsplit | terminal <args>
 
+" }}
+
+let g:python2_host_prog = system('echo -n $(which python2)')
+let g:python3_host_prog = system('echo -n $(which python3)')
+
+call map(sort(split(globpath(&runtimepath,'_config/*.vim'))),{->[execute('exec "so" v:val')]})
+
+let s:plugin_vimrc_dir = '$HOME/.config/nvim/_config/plugins'
+function! RequirePlugin(path)
+  execute "source" s:plugin_vimrc_dir . '/' . a:path
+endfunction
+"--------------------------
+" dein
+"-------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/Users/kohei_ono/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#min#load_state($HOME . '/.cache/dein')
+  call dein#begin($HOME . '/.cache/dein')
+
+  let s:toml_dir  = $HOME . '/.config/nvim/dein/toml'
+  let s:toml      = s:toml_dir . '/dein.toml'
+  let s:lazy_toml = s:toml_dir . '/dein_lazy.toml'
+
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+if dein#check_install()
+  call dein#install()
+endif
+
 "--------------------------
 " ft setting
 "-------------------------
 autocmd BufRead,BufNewFile *.json setfiletype json
 runtime! ftplugin/man.vim
 
-call map(sort(split(globpath(&runtimepath,'_config/*.vim'))),{->[execute('exec "so" v:val')]})
