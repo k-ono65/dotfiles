@@ -9,10 +9,11 @@ export TERM=xterm-256color
 export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:"
 
 # enchancd
-export ENHANCD_FILTER=fzf:peco:percol:gof
+#export ENHANCD_FILTER=fzf:peco:percol:gof
 
 # Homebrew
 path=(
+  /opt/homebrew/bin(N-/)
   /usr/local/bin(N-/)
   $path
 )
