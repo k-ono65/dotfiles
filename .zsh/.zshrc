@@ -39,6 +39,19 @@ function fz() {
         --preview 'cat `echo {} | cut -f 1 -d ":"`'
 }
 
+move_ghq_directories() {
+  selected=`ghq list | fzf`
+  if [ ${#selected} -gt 0 ]
+  then
+    target_dir="`ghq root`/$selected"
+    echo "cd $target_dir"
+    cd $target_dir
+    zle accept-line
+  fi
+}
+zle -N move_ghq_directories
+bindkey "^]" move_ghq_directories
+
 #anyenv
 eval "$(anyenv init -)"
 

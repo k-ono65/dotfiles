@@ -5,6 +5,7 @@ alias ltr='ls -ltr'
 alias vi='nvim'
 alias cp='cp -r'
 alias mkdir='mkdir -p'
+#alias d='cd $(ghq root)/$(ghq list | fzf --reverse)'
 
 # anyframe
 
@@ -12,4 +13,4 @@ alias branch='anyframe-widget-checkout-git-branch'
 alias branch_name='anyframe-widget-insert-git-branch'
 alias cdr='anyframe-widget-cdr'
 alias any='anyframe-widget-select-widget'
-alias history='anyframe-widget-put-history'
+alias hr='anyframe-widget-put-history'

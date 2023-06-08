@@ -18,43 +18,42 @@ path=(
   $path
 )
 
+# terraform
+TFENV_ARCH=arm64
+
 # golang
-if (( $+commands[go]  )); then
+path=(
+  /usr/local/go/bin(N-/)
+  $path
+)
+if (( $+commands[go] )); then
   export GOPATH=$HOME/go
   export GOROOT=$(go env GOROOT)
   path=($GOPATH/bin $path)
 fi
 
-# Volt
-if (( $+commands[volt] )); then
-  export VOLTPATH=~/volt
-fi
-
 #node
-if (( $+commands[nodebrew] )); then
-  path=($HOME/.nodebrew/current/bin $path)
+if (( $+commands[nodenv] )); then
+  path=($(nodenv root)/shims $path)
+  eval "$(nodenv init -)"
 fi
 
 #python
 if (( $+commands[pyenv] )); then
-#  path=($(pyenv root)/shims $path)
-#  eval "$(SHELL=zsh pyenv init - --no-rehash)"
+  path=($(pyenv root)/shims $path)
+  #eval "$(SHELL=zsh pyenv init --path --no-rehash)"
+  eval "$(SHELL=zsh pyenv init --path)"
 fi
 
 #ruby
 if (( $+commands[rbenv] )); then
-  #path=($(rbenv root)/shims $path)
-  #eval "$(SHELL=zsh rbenv init - --norehash)"
+  path=($(rbenv root)/shims $path)
+  eval "$(SHELL=zsh rbenv init - --norehash)"
 fi
 #export PATH=/usr/local/opt/ruby/bin:$PATH
 
 #rust
-path=($HOME/.cargo/bin $path)
-
-if [ -n "$DEBUG" ]; then
-	zmodload zsh/zprof && zprof
-	unset DEBUG
-fi
+#path=($HOME/.cargo/bin $path)
 
 # mysql
 path=(
@@ -68,9 +67,17 @@ path=(
   $path
 )
 
+# krew
+path=(
+  ${KREW_ROOT:-$HOME/.krew}/bin
+  $path
+)
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kouhei_ono/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kouhei_ono/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kouhei_ono/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kouhei_ono/google-cloud-sdk/completion.zsh.inc'; fi
-. "$HOME/.cargo/env"
+if [ -f '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
+
+# chatGPT
+export CHATGPT_API_KEY='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'
