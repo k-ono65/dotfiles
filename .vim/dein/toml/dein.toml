@@ -1,0 +1,146 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif dein#util#_is_mac()
+    let cmd = 'make -f make_mac.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+build = 'make'
+
+[[plugins]]
+repo = "kristijanhusak/defx-git"
+hook_add = "call RequirePlugin('defx-git.vim')"
+
+[[plugins]]
+repo = "kristijanhusak/defx-icons"
+
+[[plugins]]
+repo = "Shougo/defx.nvim"
+depends = ["defx-git","defx-icons"]
+hook_add = "call RequirePlugin('defx.vim')"
+
+[[plugins]]
+repo = "Shougo/denite.nvim"
+hook_add = "call RequirePlugin('denite.vim')"
+
+[[plugins]]
+repo = "Jagua/vim-denite-ghq"
+depends = ["denite"]
+hook_add = "call RequirePlugin('denite-ghq.vim')"
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+  let g:molokai_original = 1
+  let g:rehash264 = 1
+'''
+
+[[plugins]]
+repo = 'sainnhe/edge'
+hook_add = '''
+  set termguicolors
+  set background=dark
+  let g:edge_style = 'neon'
+  let g:edge_disable_italic_comment = 0
+  autocmd VimEnter * colorscheme edge
+'''
+
+[[plugins]]
+repo = 'sainnhe/gruvbox-material'
+hook_add = '''
+  set termguicolors
+  set background=dark
+  let g:gruvbox_material_background = 'soft'
+'''
+
+[[plugins]]
+repo = 'aereal/vim-colors-japanesque'
+
+hook_add = '''
+  set termguicolors
+'''
+
+[[plugins]]
+repo = "airblade/vim-gitgutter"
+
+[[plugins]]
+repo = "tpope/vim-fugitive"
+
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+hook_add = '''
+  let g:terraform_fmt_on_save = 1
+  let g:terraform_align = 1
+  let g:terraform_fold_section = 1
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'skanehira/translate.vim'
+
+#[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = "call RequirePlugin('lsp.vim')"
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+hook_add = '''
+ let g:lsp_settings_servers_dir = '~/.lsp-settings'
+'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+
+[[plugins]]
+repo = "mattn/vim-goimports"
+
+[[plugins]]
+#repo = "mattn/vim-chatgpt"
+repo = "CoderCookE/vim-chatgpt"
+hook_add = "call RequirePlugin('chatgpt.vim')"
+
+[[plugins]]
+repo = "github/copilot.vim.git"
+
+[[plugins]]
+repo = "previm/previm"
+hook_add = '''
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+'''

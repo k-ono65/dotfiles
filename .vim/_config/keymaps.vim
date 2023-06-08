@@ -16,14 +16,18 @@ nnoremap ]Q :<C-u>clast<CR>
 let mapleader = "\<Space>"  "スペースをleaderとして登録する
 
 "--------------------------
+" terminal setting
+"--------------------------
+:tnoremap <Esc> <C-\><C-n>
+"--------------------------
 " nerdtree map
 "--------------------------
-nnoremap <silent><Leader>e :NERDTreeToggle<CR>
+"nnoremap <silent><Leader>e :NERDTreeToggle<CR>
 
 "-------------------------
 " fzf
 "-------------------------
-nnoremap <silent><Leader>k :Ag<CR>
+nnoremap <silent><Leader>k :Rg<CR>
 
 " tab setting {{{
 nnoremap [TABCMD]  <nop>
@@ -39,3 +43,5 @@ nnoremap <silent> [TABCMD]o :<c-u>tabonly<cr>
 nnoremap <silent> [TABCMD]s :<c-u>tabs<cr>
 " }}}
 
+nnoremap <expr> <C-]> execute('LspPeekDefinition') =~ "not supported" ? "\<C-]>" : ":LspDefinition<cr>"
+nnoremap <expr> <C-\> execute('LspPeekDefinition') =~ "not supported" ? "\<C-[>" : ":LspReference<cr>"
