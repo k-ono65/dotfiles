@@ -79,5 +79,3 @@ if [ -f '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/path.zsh.inc' ]; the
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kohei_ono/work/tool/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
-# chatGPT
-export CHATGPT_API_KEY='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'
