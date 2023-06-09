@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if $CODESPACE; then
-  sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
-  exit 0
-fi
-
 basepath=$(cd $(dirname $0); pwd)
 
 # zsh files
@@ -18,4 +13,10 @@ ln -snf ${basepath}/.zsh/rc ${HOME}/.zsh/rc
 # vim files
 ln -sf ${basepath}/.vimrc ${HOME}/.vimrc
 ln -snf ${basepath}/.vim ${HOME}/.vim
+
+if $CODESPACE; then
+  sudo apt-get update && sudo apt-get install -y locales-all
+  sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
+  exit 0
+fi
 
