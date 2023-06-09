@@ -14,3 +14,6 @@ ln -snf ${basepath}/.zsh/rc ${HOME}/.zsh/rc
 ln -sf ${basepath}/.vimrc ${HOME}/.vimrc
 ln -snf ${basepath}/.vim ${HOME}/.vim
 
+if $CODESPACE; then
+  sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
+fi
