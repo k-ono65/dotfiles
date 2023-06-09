@@ -15,7 +15,7 @@ ln -sf ${basepath}/.vimrc ${HOME}/.vimrc
 ln -snf ${basepath}/.vim ${HOME}/.vim
 
 if $CODESPACE; then
-  sudo apt-get update && sudo apt-get install -y locales-all
+  sudo apt-get update && sudo apt-get install -y locales-all neovim tig
   sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
   exit 0
 fi
