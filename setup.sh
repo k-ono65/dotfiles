@@ -12,6 +12,5 @@ ln -snf ${basepath}/.zsh/rc ${HOME}/.zsh/rc
 
 # vim files
 ln -sf ${basepath}/.vimrc ${HOME}/.vimrc
-ln -sf ${basepath}/.viminfo ${HOME}/.viminfo
 ln -snf ${basepath}/.vim ${HOME}/.vim
 
