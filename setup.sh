@@ -12,10 +12,15 @@ ln -snf ${basepath}/.zsh/rc ${HOME}/.zsh/rc
 
 # vim files
 ln -sf ${basepath}/.vimrc ${HOME}/.vimrc
+#ln -sf ${basepath}/.vimrc ${HOME}/.config/nvim/init.vim
 ln -snf ${basepath}/.vim ${HOME}/.vim
 
 if $CODESPACE; then
-  sudo apt-get update && sudo apt-get install -y locales-all neovim tig
+  sudo apt-get update && sudo apt-get install -y locales-all tig bc fzf
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
+  ./nvim.appimage --appimage-extract
+  sudo mv squashfs-root / && sudo ln -sf /squashfs-root/AppRun /usr/bin/nvim
   sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
   exit 0
 fi

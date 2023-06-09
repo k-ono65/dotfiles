@@ -53,10 +53,14 @@ zle -N move_ghq_directories
 bindkey "^]" move_ghq_directories
 
 #anyenv
-eval "$(anyenv init -)"
+if (( $+commands[anyenv] )); then
+  eval "$(anyenv init -)"
+fi
 
 #direnv
-eval "$(direnv hook zsh)"
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
