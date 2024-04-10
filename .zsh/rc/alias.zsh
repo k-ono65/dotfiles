@@ -1,11 +1,23 @@
 # general
-alias ls='ls -G'
-alias la='ls -lA'
-alias ltr='ls -ltr'
 alias vi='nvim'
 alias cp='cp -r'
 alias mkdir='mkdir -p'
+alias lg='lazygit'
 #alias d='cd $(ghq root)/$(ghq list | fzf --reverse)'
+
+# kubernetes
+alias k='kubectl'
+alias kg='kubectl get'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get services'
+alias kgn='kubectl get nodes'
+alias kga='kubectl get all'
+alias kgd='kubectl get deployments'
+alias kgn='kubectl get namespaces'
+
+alias kdp='kubectl describe pods'
+alias kds='kubectl describe services'
+alias kdd='kubectl describe deployments'
 
 # anyframe
 
