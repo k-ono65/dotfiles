@@ -3,6 +3,9 @@ setopt correct           # Correct command mistake
 setopt no_flow_control   # Disable lock with CTL+S and CTL+q
 setopt no_global_rcs
 
+# Use emacs keybindings (even with EDITOR=nvim)
+bindkey -e
+
 # History options
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=16384

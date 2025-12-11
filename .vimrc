@@ -15,6 +15,7 @@ set cmdheight=2			"メッセージ表示欄を2行確保
 set helpheight=999		"ヘルプを画面いっぱいに開く
 set switchbuf=usetab	"バッファを切り替えるときの動作を調節する。
 set showtabline=2		"タブラベルを常に表示する"
+set background=dark
 
 "--------------------------
 " cursol settings
@@ -80,8 +81,10 @@ command! -nargs=* VT vsplit | terminal <args>
 
 " }}
 
-let g:python2_host_prog = system('echo -n $(which python2)')
-let g:python3_host_prog = system('echo -n $(which python3)')
+"let g:python2_host_prog = system('echo -n $(which python2)')
+"let g:python3_host_prog = system('echo -n $(which python3)')
+let g:python2_host_prog = $HOME . '/.asdf/shims/python2'
+let g:python3_host_prog = $HOME . '/.asdf/shims/python3'
 
 call map(sort(split(globpath(&runtimepath,'_config/*.vim'))),{->[execute('exec "so" v:val')]})
 

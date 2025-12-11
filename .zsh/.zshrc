@@ -1,3 +1,5 @@
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 for rcfile in $ZDOTDIR/rc/*; do [ -r ${rcfile} ] && source ${rcfile}; done
 
 autoload -Uz cdr
@@ -19,7 +21,7 @@ alias lta=eta
 alias l="clear && ls"
 
 
-# fzf zstyle ":anyframe:selector:" use fzf
+# fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!**/.git/*"'
 export FZF_DEFAULT_OPTS="--height 40% --reverse --border=sharp --ansi --multi --color=light"
 export FZF_CTRL_T_OPTS='--preview "bat --color=always --style=header,grid --line-range :100 {}"'
@@ -68,17 +70,30 @@ zle -N move_ghq_directories
 bindkey "^]" move_ghq_directories
 
 #anyenv
-if (( $+commands[anyenv] )); then
-  eval "$(anyenv init -)"
-fi
+#if (( $+commands[anyenv] )); then
+#  eval "$(anyenv init -)"
+#fi
 
 #direnv
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 
-source $ENHANCD_ROOT/init.sh
+# zoxide (enhancd から置き換え)
+eval "$(zoxide init zsh --cmd cd)"
 
 #fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+#. /opt/homebrew/opt/asdf/libexec/asdf.sh
+eval "$(~/.local/bin/mise activate zsh)"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/kohei_ono/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

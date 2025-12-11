@@ -26,3 +26,6 @@ alias branch_name='anyframe-widget-insert-git-branch'
 alias cdr='anyframe-widget-cdr'
 alias any='anyframe-widget-select-widget'
 alias hr='anyframe-widget-put-history'
+
+# other
+alias gui='gitui'

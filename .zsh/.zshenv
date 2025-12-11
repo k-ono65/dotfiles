@@ -2,6 +2,11 @@ export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export XDG_CONFIG_HOME=~/.config
 
+# Editor
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+export COPILOT_ENABLED=1
+
 # ls colors
 export CLICOLOR=1;
 export LSCOLORS=gxfxcxdxbxegedabagacad;
@@ -21,7 +26,7 @@ path=(
 # terraform
 TFENV_ARCH=arm64
 
-# golang
+## golang
 path=(
   /usr/local/go/bin(N-/)
   $path
@@ -32,41 +37,41 @@ if (( $+commands[go] )); then
   path=($GOPATH/bin $path)
 fi
 
-#node
-if (( $+commands[nodenv] )); then
-  path=($(nodenv root)/shims $path)
-  eval "$(nodenv init -)"
-fi
+##node
+#if (( $+commands[nodenv] )); then
+#  path=($(nodenv root)/shims $path)
+#  eval "$(nodenv init -)"
+#fi
 
 #python
-if (( $+commands[pyenv] )); then
-  path=($(pyenv root)/shims $path)
-  #eval "$(SHELL=zsh pyenv init --path --no-rehash)"
-  eval "$(SHELL=zsh pyenv init --path)"
-fi
+#if (( $+commands[pyenv] )); then
+#  path=($(pyenv root)/shims $path)
+#  #eval "$(SHELL=zsh pyenv init --path --no-rehash)"
+#  eval "$(SHELL=zsh pyenv init --path)"
+#fi
 
 #ruby
-if (( $+commands[rbenv] )); then
-  path=($(rbenv root)/shims $path)
-  eval "$(SHELL=zsh rbenv init - --norehash)"
-fi
-#export PATH=/usr/local/opt/ruby/bin:$PATH
+#if (( $+commands[rbenv] )); then
+#  path=($(rbenv root)/shims $path)
+#  eval "$(SHELL=zsh rbenv init - --norehash)"
+#fi
+##export PATH=/usr/local/opt/ruby/bin:$PATH
 
 #rust
 #path=($HOME/.cargo/bin $path)
 
 # mysql
-path=(
-  /usr/local/opt/mysql-client/bin(N-/)
-  $path
-)
-
+#path=(
+#  /usr/local/opt/mysql-client/bin(N-/)
+#  $path
+#)
+#
 # postgresql
-path=(
-  /usr/local/opt/libpq/bin(N-/)
-  $path
-)
-
+#path=(
+#  /usr/local/opt/libpq/bin(N-/)
+#  $path
+#)
+#
 # krew
 path=(
   ${KREW_ROOT:-$HOME/.krew}/bin
@@ -82,3 +87,8 @@ if [[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]]; then
 fi
 
 . "$HOME/.cargo/env"
+
+# alacritty
+if (( $+commands[alacritty] )); then
+  path=($HOME/.config/alacritty/bin $path)
+fi

@@ -131,10 +131,10 @@ repo = 'mattn/vim-lsp-icons'
 [[plugins]]
 repo = "mattn/vim-goimports"
 
-[[plugins]]
+#[[plugins]]
 #repo = "mattn/vim-chatgpt"
-repo = "CoderCookE/vim-chatgpt"
-hook_add = "call RequirePlugin('chatgpt.vim')"
+#repo = "CoderCookE/vim-chatgpt"
+#hook_add = "call RequirePlugin('chatgpt.vim')"
 
 [[plugins]]
 repo = "github/copilot.vim.git"
