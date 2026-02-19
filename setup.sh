@@ -138,10 +138,8 @@ setup_symlinks_config() {
   make_symlink "${DOTFILES_DIR}/config/hammerspoon/init.lua" "${HOME}/.hammerspoon/init.lua"
   make_symlink "${DOTFILES_DIR}/config/hammerspoon/alacritty.lua" "${HOME}/.hammerspoon/alacritty.lua"
   make_symlink "${DOTFILES_DIR}/config/hammerspoon/window.lua" "${HOME}/.hammerspoon/window.lua"
-  if [[ ! -d "${HOME}/.hammerspoon/hs" ]]; then
-    warn "~/.hammerspoon/hs/ (spacesモジュール) がありません"
-    warn "  → https://github.com/asmagill/hs._asm.spaces からインストールしてください"
-  fi
+  # hs.spaces はHammerspoon 0.9.93以降ビルトイン。
+  # 動作しない場合のみ https://github.com/asmagill/hs._asm.spaces を手動インストール
 
   success "~/.config + Hammerspoon シンボリックリンク完了"
 }
@@ -330,17 +328,13 @@ print_manual_steps() {
   echo "   - ghq get taktalf/dotfiles"
   echo "   - ln -snf \$(ghq root)/github.com/taktalf/dotfiles/nvim ~/.config/nvim"
   echo ""
-  echo "6. Hammerspoon hs.spaces モジュール:"
-  echo "   - https://github.com/asmagill/hs._asm.spaces"
-  echo "   - ダウンロードして ~/.hammerspoon/hs/ に配置"
-  echo ""
-  echo "7. アプリケーション:"
+  echo "6. アプリケーション:"
   echo "   - Kiro CLI"
   echo ""
-  echo "8. Karabiner-Elements:"
+  echo "7. Karabiner-Elements:"
   echo "   - Quit, Restart → Restart で設定を再読み込み"
   echo ""
-  echo "9. macOS設定:"
+  echo "8. macOS設定:"
   echo "   - キーボード設定 (リピート速度等)"
   echo "   - Dock設定"
   echo "   - Finder設定"
