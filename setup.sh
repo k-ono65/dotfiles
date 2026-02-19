@@ -114,9 +114,10 @@ setup_symlinks_config() {
   mkdir -p "${config_dir}/sheldon"
   make_symlink "${DOTFILES_DIR}/config/sheldon/plugins.toml" "${config_dir}/sheldon/plugins.toml"
 
-  # karabiner
+  # karabiner (シンボリックリンク非対応のためコピー)
   mkdir -p "${config_dir}/karabiner"
-  make_symlink "${DOTFILES_DIR}/config/karabiner/karabiner.json" "${config_dir}/karabiner/karabiner.json"
+  cp "${DOTFILES_DIR}/config/karabiner/karabiner.json" "${config_dir}/karabiner/karabiner.json"
+  success "コピー: ${config_dir}/karabiner/karabiner.json"
 
   # mise
   mkdir -p "${config_dir}/mise"
