@@ -133,7 +133,17 @@ setup_symlinks_config() {
   mkdir -p "${config_dir}/gitui"
   make_symlink "${DOTFILES_DIR}/config/gitui/key_bindings.ron" "${config_dir}/gitui/key_bindings.ron"
 
-  success "~/.config シンボリックリンク完了"
+  # hammerspoon (~/.hammerspoon/ を使用)
+  mkdir -p "${HOME}/.hammerspoon"
+  make_symlink "${DOTFILES_DIR}/config/hammerspoon/init.lua" "${HOME}/.hammerspoon/init.lua"
+  make_symlink "${DOTFILES_DIR}/config/hammerspoon/alacritty.lua" "${HOME}/.hammerspoon/alacritty.lua"
+  make_symlink "${DOTFILES_DIR}/config/hammerspoon/window.lua" "${HOME}/.hammerspoon/window.lua"
+  if [[ ! -d "${HOME}/.hammerspoon/hs" ]]; then
+    warn "~/.hammerspoon/hs/ (spacesモジュール) がありません"
+    warn "  → https://github.com/asmagill/hs._asm.spaces からインストールしてください"
+  fi
+
+  success "~/.config + Hammerspoon シンボリックリンク完了"
 }
 
 # --- Step 6: gitconfig ---
@@ -320,12 +330,17 @@ print_manual_steps() {
   echo "   - ghq get taktalf/dotfiles"
   echo "   - ln -snf \$(ghq root)/github.com/taktalf/dotfiles/nvim ~/.config/nvim"
   echo ""
-  echo "6. アプリケーション:"
-  echo "   - Docker Desktop"
-  echo "   - Karabiner-Elements (cask で入る場合あり)"
+  echo "6. Hammerspoon hs.spaces モジュール:"
+  echo "   - https://github.com/asmagill/hs._asm.spaces"
+  echo "   - ダウンロードして ~/.hammerspoon/hs/ に配置"
+  echo ""
+  echo "7. アプリケーション:"
   echo "   - Kiro CLI"
   echo ""
-  echo "7. macOS設定:"
+  echo "8. Karabiner-Elements:"
+  echo "   - Quit, Restart → Restart で設定を再読み込み"
+  echo ""
+  echo "9. macOS設定:"
   echo "   - キーボード設定 (リピート速度等)"
   echo "   - Dock設定"
   echo "   - Finder設定"
