@@ -1,0 +1,26 @@
+[shell]
+program = "/bin/zsh"
+args = ["--login"]
+
+[cursor]
+style = "Beam"
+
+[font]
+size = 14.0
+
+[font.normal]
+#family = "Monaco"
+family = "HackGen35 Console NF"
+
+[window]
+opacity = 1
+
+[window.dimensions]
+columns = 185
+lines = 85
+
+[keyboard]
+bindings = [
+{ key = "Return", mods = "Command", action = "ToggleFullScreen"}
+]
+

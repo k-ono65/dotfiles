@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(path:/Users/kohei_ono/ghq/github.com/micin-jp/**)",
+      "Glob(path:/Users/kohei_ono/ghq/github.com/micin-jp/**)",
+      "Grep(path:/Users/kohei_ono/ghq/github.com/micin-jp/**)",
+      "mcp__serena__list_memories",
+      "mcp__serena__list_dir",
+      "mcp__serena__read_memory",
+      "mcp__serena__get_symbols_overview",
+      "mcp__serena__find_symbol",
+      "mcp__serena__find_referencing_symbols",
+      "mcp__serena__find_file",
+      "mcp__serena__search_for_pattern",
+      "mcp__aws-knowledge__aws___read_documentation",
+      "mcp__aws-knowledge__aws___get_regional_availability",
+      "mcp__aws-knowledge__aws___search_documentation",
+      "mcp__aws-knowledge__aws___list_regions",
+      "mcp__aws-knowledge__aws___recommend",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(mkdir:*)",
+      "Bash(uv run:*)",
+      "Bash(pip install:*)",
+      "Bash(terraform plan:*)",
+      "Bash(terraform apply:*)",
+      "Bash(agentcore deploy:*)",
+      "Bash(agentcore invoke:*)",
+      "Bash(lambroll render:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
+    ]
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true
+}

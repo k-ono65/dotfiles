@@ -1,0 +1,20 @@
+shell = "zsh"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-async]
+github = "mafredri/zsh-async"
+
+[plugins.pure]
+github = "sindresorhus/pure"
+
+[plugins.anyframe]
+github = "mollifier/anyframe"
+
+# syntax-highlighting は最後に読み込む
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"

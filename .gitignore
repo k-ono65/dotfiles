@@ -1,2 +1,14 @@
+.DS_Store
 .vim/plugged/neocomplete.vim/*
 .vim/plugged/neosnippet.vim/*
+
+# エクスポートデータ (環境依存)
+exports/
+
+# シークレット
+.zsh/.zsh_secret
+.zsh/.zsh_history
+.zsh/.zcompdump*
+
+# Claude Code ローカル設定
+claude/settings.local.json

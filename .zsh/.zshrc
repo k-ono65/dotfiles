@@ -4,7 +4,16 @@ for rcfile in $ZDOTDIR/rc/*; do [ -r ${rcfile} ] && source ${rcfile}; done
 
 autoload -Uz cdr
 autoload -Uz colors && colors
-autoload -Uz compinit && compinit
+# Docker CLI completions (compinit 前に fpath 追加)
+fpath=($HOME/.docker/completions $fpath)
+
+# compinit キャッシュ（24時間以上古い場合のみ再生成）
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LSCOLORS}
 
 # eza
@@ -82,6 +91,38 @@ fi
 # zoxide (enhancd から置き換え)
 eval "$(zoxide init zsh --cmd cd)"
 
+# cd .. でインタラクティブに親ディレクトリを選択
+function __cd_parent_interactive() {
+  local current_dir="${PWD}"
+  local parent_dirs=()
+  local dir="${current_dir}"
+
+  while [[ "${dir}" != "/" ]]; do
+    dir="$(dirname "${dir}")"
+    parent_dirs+=("${dir}")
+  done
+
+  if [[ ${#parent_dirs[@]} -eq 0 ]]; then
+    echo "Already at root directory"
+    return 1
+  fi
+
+  local selected=$(printf '%s\n' "${parent_dirs[@]}" | fzf --height 40% --reverse --border=sharp --prompt="Select parent directory: ")
+
+  if [[ -n "${selected}" ]]; then
+    __zoxide_z "${selected}"
+  fi
+}
+
+# zoxideのcd関数を保存してラップ
+function cd() {
+  if [[ "$1" == ".." && $# -eq 1 ]]; then
+    __cd_parent_interactive
+  else
+    __zoxide_z "$@"
+  fi
+}
+
 #fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -89,11 +130,14 @@ eval "$(zoxide init zsh --cmd cd)"
 #. /opt/homebrew/opt/asdf/libexec/asdf.sh
 eval "$(~/.local/bin/mise activate zsh)"
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/kohei_ono/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+# claude alias (mise 管理の node から動的検出)
+if command -v mise &>/dev/null; then
+  _claude_path="$(mise where node 2>/dev/null)/bin/claude"
+  [[ -x "$_claude_path" ]] && alias claude="$_claude_path"
+  unset _claude_path
+fi
+
+# Docker CLI completions (fpath は上部の compinit で読み込み済み)
 
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

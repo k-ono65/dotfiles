@@ -1,0 +1,11 @@
+[tools]
+awscli = "latest"
+node = "23.11.0"
+ruby = "3.4.2"
+neovim = "latest"
+terraform = "latest"
+go = "latest"
+postgres = "17"
+wtfutil = "latest"
+zoxide = "latest"
+

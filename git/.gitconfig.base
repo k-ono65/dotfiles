@@ -1,0 +1,18 @@
+[user]
+	email = kohei_ono@micin.jp
+	name = kohei ono
+[core]
+	editor = nvim
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = false
+[diff]
+  colorMoved = default
+
+# トークンなどの機密情報は ~/.gitconfig.local に記載
+[include]
+  path = ~/.gitconfig.local

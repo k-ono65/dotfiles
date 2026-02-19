@@ -1,3 +1,3 @@
 export ZDOTDIR=${HOME}/.zsh
 source $ZDOTDIR/.zshenv
-source $ZDOTDIR/.zsh_secret
+[[ -f $ZDOTDIR/.zsh_secret ]] && source $ZDOTDIR/.zsh_secret

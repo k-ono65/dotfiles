@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+## If alacritty.yml does not exist, raise an alert
+[[ ! -f ${XDG_CONFIG_HOME}/alacritty/alacritty.toml ]] && \
+    notify-send "alacritty.yml does not exist" && exit 0
+
+## Fetch opacity from alacritty.toml
+opacity=$(awk '$1 == "opacity" {print $3; exit}' \
+    $XDG_CONFIG_HOME/alacritty/alacritty.toml)
+
+## Assign toggle opacity value
+case $opacity in
+  1)
+    toggle_opacity=0.6
+    ;;
+  *)
+    toggle_opacity=1
+    ;;
+esac
+
+## Replace opacity value in alacritty.yml
+sed -i "" "s/opacity = $opacity/opacity = $toggle_opacity/g" \
+  $XDG_CONFIG_HOME/alacritty/alacritty.toml
