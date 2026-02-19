@@ -191,6 +191,8 @@ install_mise_tools() {
     return 1
   fi
   info "mise ツールをインストール中..."
+  # PostgreSQL ビルド時に icu4c を検出するため PKG_CONFIG_PATH を設定
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
   mise install
   success "mise ツールインストール完了"
 }

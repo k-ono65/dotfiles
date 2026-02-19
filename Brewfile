@@ -7,6 +7,7 @@ tap "supabase/tap"
 
 # Core tools
 brew "bat"
+brew "pkgconf"
 brew "direnv"
 brew "eza"
 brew "fzf"
