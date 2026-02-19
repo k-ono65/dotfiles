@@ -190,7 +190,7 @@ install_rust() {
   fi
 
   info "cargo パッケージをインストール中..."
-  local cargo_packages=(alacritty cargo-update fd-find zellij)
+  local cargo_packages=(cargo-update fd-find zellij)
   for pkg in "${cargo_packages[@]}"; do
     if cargo install --list | grep -q "^${pkg} "; then
       success "${pkg} は既にインストール済みです"
@@ -201,7 +201,36 @@ install_rust() {
   done
 }
 
-# --- Step 10: フォント ---
+# --- Step 10: Alacritty (Homebrew deprecated のため GitHub Releases から) ---
+
+install_alacritty() {
+  if [[ -d "/Applications/Alacritty.app" ]]; then
+    success "Alacritty は既にインストール済みです"
+    return
+  fi
+  info "Alacritty を GitHub Releases からインストール中..."
+  local tmp_dir
+  tmp_dir="$(mktemp -d)"
+  local latest_url
+  latest_url="$(curl -s https://api.github.com/repos/alacritty/alacritty/releases/latest \
+    | grep "browser_download_url.*Alacritty-.*\.dmg" \
+    | head -1 \
+    | cut -d '"' -f 4)"
+  if [[ -z "$latest_url" ]]; then
+    warn "Alacritty リリースURLの取得に失敗しました。手動でインストールしてください"
+    warn "https://github.com/alacritty/alacritty/releases"
+    rm -rf "$tmp_dir"
+    return 1
+  fi
+  curl -L -o "${tmp_dir}/Alacritty.dmg" "$latest_url"
+  hdiutil attach "${tmp_dir}/Alacritty.dmg" -nobrowse -quiet
+  cp -R "/Volumes/Alacritty/Alacritty.app" /Applications/
+  hdiutil detach "/Volumes/Alacritty" -quiet
+  rm -rf "$tmp_dir"
+  success "Alacritty インストール完了"
+}
+
+# --- Step 11: フォント ---
 
 install_fonts() {
   info "HackGen35 Console NF フォントをインストール中..."
@@ -330,6 +359,7 @@ main() {
   setup_claude
   install_mise_tools
   install_rust
+  install_alacritty
   install_fonts
   install_google_cloud_sdk
   setup_ghq
@@ -353,7 +383,7 @@ if [[ $# -gt 0 ]]; then
     echo "  install_homebrew, install_brewfile,"
     echo "  setup_symlinks_zsh, setup_symlinks_vim, setup_symlinks_config,"
     echo "  setup_gitconfig, setup_claude,"
-    echo "  install_mise_tools, install_rust, install_fonts,"
+    echo "  install_mise_tools, install_rust, install_alacritty, install_fonts,"
     echo "  install_google_cloud_sdk, setup_ghq, print_manual_steps"
     exit 1
   fi
