@@ -82,8 +82,18 @@ brew "watchman"
 
 # Casks
 cask "alacritty"
+cask "alfred"
+cask "cursor"
+cask "docker"
+cask "google-chrome"
 cask "graphql-playground"
+cask "iterm2"
+cask "karabiner-elements"
+cask "slack"
+cask "tableplus"
+cask "visual-studio-code"
 cask "wave"
+cask "zoom"
 
 # VS Code extensions
 vscode "amazonwebservices.amazon-q-vscode"
