@@ -98,7 +98,6 @@ cask "zoom"
 # VS Code extensions
 vscode "amazonwebservices.amazon-q-vscode"
 vscode "amazonwebservices.aws-toolkit-vscode"
-vscode "amazonwebservices.codewhisperer-for-command-line-companion"
 vscode "eamodio.gitlens"
 vscode "hashicorp.terraform"
 vscode "hediet.vscode-drawio"

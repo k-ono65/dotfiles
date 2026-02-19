@@ -73,7 +73,9 @@ install_brewfile() {
     return 1
   fi
   info "Brewfile からパッケージをインストール中..."
-  brew bundle install --file="${DOTFILES_DIR}/Brewfile"
+  if ! brew bundle install --file="${DOTFILES_DIR}/Brewfile"; then
+    warn "一部パッケージのインストールに失敗しました。後で brew bundle install を再実行してください"
+  fi
   success "Brewfile インストール完了"
 }
 
