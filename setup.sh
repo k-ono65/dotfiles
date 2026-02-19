@@ -101,6 +101,16 @@ setup_symlinks_vim() {
   success "vim シンボリックリンク完了"
 }
 
+# --- Step 4b: その他ホームディレクトリの設定ファイル ---
+
+setup_symlinks_home() {
+  info "ホームディレクトリの設定ファイルをリンク中..."
+  make_symlink "${DOTFILES_DIR}/.tmux.conf" "${HOME}/.tmux.conf"
+  make_symlink "${DOTFILES_DIR}/.tool-versions" "${HOME}/.tool-versions"
+  make_symlink "${DOTFILES_DIR}/.npmrc" "${HOME}/.npmrc"
+  success "ホームディレクトリ設定リンク完了"
+}
+
 # --- Step 5: ~/.config 配下のシンボリックリンク ---
 
 setup_symlinks_config() {
@@ -363,6 +373,7 @@ main() {
   install_brewfile
   setup_symlinks_zsh
   setup_symlinks_vim
+  setup_symlinks_home
   setup_symlinks_config
   setup_gitconfig
   setup_claude
@@ -390,7 +401,8 @@ if [[ $# -gt 0 ]]; then
     echo ""
     echo "利用可能な関数:"
     echo "  install_homebrew, install_brewfile,"
-    echo "  setup_symlinks_zsh, setup_symlinks_vim, setup_symlinks_config,"
+    echo "  setup_symlinks_zsh, setup_symlinks_vim, setup_symlinks_home,"
+    echo "  setup_symlinks_config,"
     echo "  setup_gitconfig, setup_claude,"
     echo "  install_mise_tools, install_rust, install_alacritty, install_fonts,"
     echo "  install_google_cloud_sdk, setup_ghq, print_manual_steps"
